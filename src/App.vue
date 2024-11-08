@@ -1,6 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+import ListaCocktails from './components/ListaCocktails.vue'
+
 </script>
 
 <template>
@@ -9,7 +11,7 @@ import TheWelcome from './components/TheWelcome.vue'
 <!-- Header -->
 <header class="bg-blue-600 text-white">
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold">My Website</h1>
+        <h1 class="text-3xl font-bold">Cocktails App</h1>
     </div>
 </header>
 
@@ -27,38 +29,20 @@ import TheWelcome from './components/TheWelcome.vue'
 
 <!-- Banner -->
 <div class="bg-gray-300 h-64 flex items-center justify-center">
-    <h2 class="text-4xl font-bold">Welcome to My Website!</h2>
+    <h2 class="text-4xl font-bold">Cocktail of the day</h2>
 </div>
 
 <!-- Image List -->
-<section class="container mx-auto p-4 mt-8">
-    <h3 class="text-2xl font-bold mb-4">Image Gallery</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 1" class="w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 2" class="w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 3" class="w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 4" class="w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 5" class="w-full h-48 object-cover rounded">
-        </div>
-        <div class="bg-white p-4 shadow rounded">
-            <img src="https://via.placeholder.com/300" alt="Image 6" class="w-full h-48 object-cover rounded">
-        </div>
-    </div>
-</section>
+<div class="">
+    <ListaCocktails />
+ </div>
+ 
+
 
 <!-- Footer -->
 <footer class="bg-blue-600 text-white mt-8">
     <div class="container mx-auto p-4 text-center">
-        <p>&copy; 2024 My Website. All rights reserved.</p>
+        <p>&copy; 2024 Cocktails App. All rights reserved.</p>
     </div>
 </footer>
 
