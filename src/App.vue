@@ -2,54 +2,34 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import ListaCocktails from './components/ListaCocktails.vue'
-
+import HeaderPropTest from './components/HeaderPropTest.vue';
+import Header from './components/Header.vue';
+import Nav from './components/Nav.vue';
+import Banner from './components/Banner.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <template>
 <body class="bg-gray-100">
+    <!-- <HeaderPropTest/> -->
 
-<!-- Header -->
-<header class="bg-blue-600 text-white">
-    <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold">Cocktails App</h1>
-    </div>
-</header>
+<Header/>
 
-<!-- Navigation -->
-<nav class="bg-blue-500">
-    <div class="container mx-auto p-4">
-        <ul class="flex space-x-4">
-            <li><a href="#" class="text-white hover:underline">Home</a></li>
-            <li><a href="#" class="text-white hover:underline">About</a></li>
-            <li><a href="#" class="text-white hover:underline">Services</a></li>
-            <li><a href="#" class="text-white hover:underline">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+<Nav/>
 
-<!-- Banner -->
-<div class="bg-gray-300 h-64 flex items-center justify-center">
-    <h2 class="text-4xl font-bold">Cocktail of the day</h2>
-</div>
+<Banner/>
 
-<!-- Image List -->
-<div class="">
-    <ListaCocktails />
- </div>
+<ListaCocktails />
  
+<Footer />
 
-
-<!-- Footer -->
-<footer class="bg-blue-600 text-white mt-8">
-    <div class="container mx-auto p-4 text-center">
-        <p>&copy; 2024 Cocktails App. All rights reserved.</p>
-    </div>
-</footer>
 
 </body>
 </template>
 
 <style scoped>
+
+
 header {
   line-height: 1.5;
 }
@@ -76,4 +56,5 @@ header {
     flex-wrap: wrap;
   }
 }
+
 </style>
