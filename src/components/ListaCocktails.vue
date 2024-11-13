@@ -30,8 +30,8 @@ export default {
       }
     },
     getIngredients(cocktail) {
-      // Puedes personalizar esto para mostrar los ingredientes de una manera específica.
-      return 'No ingredients available'; // Placeholder, ya que la API no proporciona ingredientes en esta solicitud.
+      
+      return 'Ingredientes no disponibles de la API'; 
     }
   }
 };
