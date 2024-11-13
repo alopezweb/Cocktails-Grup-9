@@ -1,76 +1,44 @@
-<script>
-export default {
-  data() {
-    return {
-      cocktails: [
-    { 
-        id: 1, 
-        name: 'Mojito', 
-        ingredients: ['Ron', 'Azúcar', 'Lima', 'Menta', 'Agua con gas'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 2, 
-        name: 'Piña Colada', 
-        ingredients: ['Ron', 'Crema de coco', 'Jugo de piña'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 3, 
-        name: 'Daiquiri', 
-        ingredients: ['Ron', 'Azúcar', 'Lima'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 4, 
-        name: 'Margarita', 
-        ingredients: ['Tequila', 'Licor de naranja', 'Lima'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 5, 
-        name: 'Mojito', 
-        ingredients: ['Ron', 'Azúcar', 'Lima', 'Menta', 'Agua con gas'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 6, 
-        name: 'Piña Colada', 
-        ingredients: ['Ron', 'Crema de coco', 'Jugo de piña'], 
-        imagen: 'https://bartendercocktail.es/wp-content/uploads/2021/09/pina-colada-coctel-receta.jpg' 
-    },
-    { 
-        id: 7, 
-        name: 'Daiquiri', 
-        ingredients: ['Ron', 'Azúcar', 'Lima'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    },
-    { 
-        id: 8, 
-        name: 'Margarita', 
-        ingredients: ['Tequila', 'Licor de naranja', 'Lima'], 
-        imagen: 'https://mandolina.co/wp-content/uploads/2023/07/daiquiri-frambuesa-1200x900.jpg' 
-    }
-    ]
-    };
-
-  }
-};
-
-</script>
-
 <template>
     <div class="cocktail-grid">
-      <div class="cocktail-card" v-for="cocktail in cocktails" :key="cocktail.id">
-        <img :src="cocktail.imagen" alt="cocktail.name" class="cocktail-image" />
-        <h3>{{ cocktail.name }}</h3>
-        <p>Ingredients: {{ cocktail.ingredients.join(', ') }}</p>
+      <div class="cocktail-card" v-for="cocktail in cocktails" :key="cocktail.idDrink">
+        <img :src="cocktail.strDrinkThumb" alt="cocktail.name" class="cocktail-image" />
+        <h3>{{ cocktail.strDrink }}</h3>
+        <p>Ingredients: {{ getIngredients(cocktail) }}</p>
       </div>
     </div>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      cocktails: []
+    };
+  },
+  mounted() {
+    this.fetchCocktails();
+  },
+  methods: {
+    async fetchCocktails() {
+      try {
+        const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic');
+        this.cocktails = response.data.drinks;
+      } catch (error) {
+        console.error('Error fetching cocktails:', error);
+      }
+    },
+    getIngredients(cocktail) {
+      // Puedes personalizar esto para mostrar los ingredientes de una manera específica.
+      return 'No ingredients available'; // Placeholder, ya que la API no proporciona ingredientes en esta solicitud.
+    }
+  }
+};
+</script>
+
 <style scoped>
-  .cocktail-grid {
+.cocktail-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px; 
@@ -96,6 +64,5 @@ export default {
   height: 25%;
   border-radius: 4px;
   margin-bottom: 8px;
-  
 }
 </style>
