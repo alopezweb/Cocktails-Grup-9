@@ -1,35 +1,14 @@
-import { createMemoryHistory, createRouter } from "vue-router";
-
-import DefaultLayout from "@/components/DefaultLayout.vue";
-
-import ListaCocktails from "../components/ListaCocktails.vue";
-import Cocktail from "../components/Cocktail.vue";
-import CreaTuCocktail from "../components/CreaTuCocktail.vue";
-
+import { createRouter, createWebHistory } from 'vue-router';
+import ListaCocktais from '@/components/ListaCocktails.vue';
+import Cocktail from '@/components/Cocktail.vue';
 
 const routes = [
-  {
-    path: "/",
-    component: DefaultLayout,
-    children: [
-      {
-        path: "/lista-de-cocktails",
-        component: ListaCocktails,
-      },
-      {
-        path: "/cocktail",
-        component: Cocktail,
-      },
-      {
-        path: "/crea-tu-cocktail",
-        component: CreaTuCocktail,
-      },
-    ],
-  },
+  { path: '/', name: 'ListaCocktails', component: ListaCocktais },
+  { path: '/cocktail/:idDrink', name: 'Cocktail', component: Cocktail, props: true },
 ];
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 });
 
