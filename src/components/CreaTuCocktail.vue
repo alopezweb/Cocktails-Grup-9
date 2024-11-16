@@ -2,13 +2,11 @@
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
 import Footer from "@/components/Footer.vue";
-import IngredientSelector from "@/components/IngredientSelector.vue";
+import IngredientSelector from "@/components/IngredientsSelector.vue";
 </script>
 
 <template>
   <div>
-    <Header />
-    <Nav />
     <main>
       <div class="form-container">
         <h1>Crea tu cóctel</h1>
@@ -46,7 +44,6 @@ import IngredientSelector from "@/components/IngredientSelector.vue";
         </form>
       </div>
     </main>
-    <Footer />
   </div>
 </template>
 
