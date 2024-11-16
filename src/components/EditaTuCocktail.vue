@@ -10,7 +10,7 @@
   </template>
   
   <script>
-  import CocktailService from '../services/CocktailService';
+ // import CocktailService from '../services/CocktailService';
   
   export default {
     data() {
