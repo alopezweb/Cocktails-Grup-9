@@ -5,8 +5,8 @@ import DefaultLayout from "@/components/DefaultLayout.vue";
 import ListaCocktails from "../components/ListaCocktails.vue"; //llistat de cocktails de la API de lectura
 import Cocktail from "../components/Cocktail.vue"; //detalls del cocktail
 import CreaTuCocktail from "../components/CreaTuCocktail.vue";
-//import EditaTuCocktail from "../components/EditaTuCocktail.vue";
-//import CocktailList from './components/CocktailList.vue;
+import EditaTuCocktail from "../components/EditaTuCocktail.vue";
+
 
 const routes = [
   {
@@ -26,8 +26,8 @@ const routes = [
         component: CreaTuCocktail,
       },
       {
-
-
+        path: "/edita-tu-cocktail",
+        component: EditaTuCocktail,
       }
    
     ],
