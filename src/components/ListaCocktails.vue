@@ -1,11 +1,14 @@
 <template>
-    <div class="cocktail-grid">
-      <div class="cocktail-card" v-for="cocktail in cocktails" :key="cocktail.idDrink">
-        <img :src="cocktail.strDrinkThumb" alt="cocktail.name" class="cocktail-image" />
-        <h3>{{ cocktail.strDrink }}</h3>
-        <p>Ingredients: {{ getIngredients(cocktail) }}</p>
-      </div>
+  <div class="cocktail-grid">
+    <div 
+      class="cocktail-card" 
+      v-for="cocktail in cocktails" 
+      :key="cocktail.idDrink"
+      @click="viewDetails(cocktail.idDrink)">
+      <img :src="cocktail.strDrinkThumb" alt="Imatge del còctel" class="cocktail-image" />
+      <h3>{{ cocktail.strDrink }}</h3>
     </div>
+  </div>
 </template>
 
 <script>
@@ -14,7 +17,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      cocktails: []
+      cocktails: [],
     };
   },
   mounted() {
@@ -29,11 +32,10 @@ export default {
         console.error('Error fetching cocktails:', error);
       }
     },
-    getIngredients(cocktail) {
-      
-      return 'Ingredientes no disponibles de la API'; 
-    }
-  }
+    viewDetails(idDrink) {
+      this.$router.push({ name: 'Cocktail', params: { idDrink } });
+    },
+  },
 };
 </script>
 
@@ -41,28 +43,27 @@ export default {
 .cocktail-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px; 
+  gap: 10px;
 }
 
 .cocktail-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  width: 500px;
   padding: 16px;
-  margin: 16px 0;
-  background-color: #f9f9f9;
   text-align: center;
-  transition: box-shadow 0.3s;
+  transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .cocktail-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
 }
 
 .cocktail-image {
-  width: 25%;
-  height: 25%;
-  border-radius: 4px;
-  margin-bottom: 8px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 </style>
+
