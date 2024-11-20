@@ -4,7 +4,6 @@ import ListaCocktails from "../components/ListaCocktails.vue"; //llistat de cock
 import Cocktail from "../components/Cocktail.vue"; //detalls del cocktail
 import HomeView from "../components/HomeView.vue";
 import CreaTuCocktail from "../components/CreaTuCocktail.vue";
-import EditaTuCocktail from "../components/EditaTuCocktail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,11 +33,6 @@ const router = createRouter({
       path: "/crea-tu-cocktail",
       name: "crea-tu-cocktail",
       component: CreaTuCocktail,
-    },
-    {
-      path: "/edita-tu-cocktail",
-      name: "edita-tu-cocktail",
-      component: EditaTuCocktail,
     },
   ],
 });
