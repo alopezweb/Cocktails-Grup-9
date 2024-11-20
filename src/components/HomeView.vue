@@ -1,12 +1,10 @@
-<script>
+
+<script setup>
+import ListaCocktails from "./ListaCocktails.vue";
 </script>
 
 <template>
-    <div class="container mx-auto p-4 text-center">
-        <p>
-            hi
-        </p>
-    </div>
+  <ListaCocktails />
 </template>
 
 <style scoped>

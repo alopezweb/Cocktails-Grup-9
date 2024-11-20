@@ -1,7 +1,4 @@
 <script setup>
-import Header from "@/components/Header.vue";
-import Nav from "@/components/Nav.vue";
-import Footer from "@/components/Footer.vue";
 import IngredientSelector from "@/components/IngredientsSelector.vue";
 </script>
 
