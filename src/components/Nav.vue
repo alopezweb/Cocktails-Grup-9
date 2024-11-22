@@ -20,7 +20,7 @@
 .nav{
     font-size: 14px;
     text-transform: uppercase;
-    color: #b9aea6;
+    color: #c2b8b1;
     border-top: #362F2A solid 1px;
     border-bottom: #362F2A solid 1px;
 }
