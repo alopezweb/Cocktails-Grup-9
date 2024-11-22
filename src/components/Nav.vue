@@ -18,6 +18,8 @@
 
 <style scoped>
 .nav{
+    font-size: 14px;
+    text-transform: uppercase;
     color: #b9aea6;
     border-top: #362F2A solid 1px;
     border-bottom: #362F2A solid 1px;
