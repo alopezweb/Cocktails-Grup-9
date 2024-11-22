@@ -26,6 +26,13 @@
           />
         </svg>
       </button>
+<!-- Notificación -->
+    <div
+      v-if="showSaveMessage"
+      class="fixed top-4 right-4 bg-gray-500 text-white px-4 py-2 rounded shadow-lg z-50"
+    >
+      {{ saveMessage }}
+    </div>
 
       <button      
         title="Share"
@@ -54,6 +61,14 @@
           </g>
         </svg>
       </button>
+
+      <!-- Notificación -->
+    <div
+      v-if="showShareMessage"
+      class="fixed top-4 right-4 bg-gray-500 text-white px-4 py-2 rounded shadow-lg z-50"
+    >
+      {{ shareMessage }}
+    </div>
     </div>
 
     <!-- Cocktail Content -->
@@ -95,6 +110,10 @@ export default {
     return {
       cocktail: null,
       ingredients: [],
+      showShareMessage: false,
+      shareMessage: "",
+      showSaveMessage: false, 
+      saveMessage: "",
     };
   },
   mounted() {
@@ -127,46 +146,40 @@ export default {
       }
     },
    guardarCocktail() {
-    // Create the notification element
-    const message = document.createElement("div");
-    message.innerText = "The cocktail has been saved to favorites!";
-    message.className =
-      "fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50";
+      // Actualizar mensaje y visibilidad
+      this.saveMessage = "The cocktail has been saved to favorites!";
+      this.showSaveMessage = true;
 
-    // Append it to the document body
-    document.body.appendChild(message);
+      // Ocultar el mensaje después de 3 segundos
+      setTimeout(() => {
+        this.showSaveMessage = false;
+      }, 3000);
+    },
 
-    // Remove the message after 3 seconds
-    setTimeout(() => {
-      document.body.removeChild(message);
-    }, 3000); // Message disappears after 3 seconds
-  },
   compartirCocktail() {
-    const url = window.location.href;
+      const url = window.location.href;
 
-    // Copy the URL to the clipboard
-    navigator.clipboard
-      .writeText(url)
-      .then(() => {
-        // Create the notification element
-        const message = document.createElement("div");
-        message.innerText = "Cocktail link copied to clipboard!";
-        message.className =
-          "fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50";
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          this.shareMessage = "Cocktail link copied to clipboard!";
+          this.showShareMessage = true;
 
-        // Append it to the document body
-        document.body.appendChild(message);
+          setTimeout(() => {
+            this.showShareMessage = false;
+          }, 3000);
+        })
+        .catch((err) => {
+          console.error("Error copying the link:", err);
+          this.shareMessage = "Failed to copy the link!";
+          this.showShareMessage = true;
 
-        // Remove the message after 3 seconds
-        setTimeout(() => {
-          document.body.removeChild(message);
-        }, 3000); // Message disappears after 3 seconds
-      })
-      .catch((err) => {
-        console.error("Error copying the link:", err);
-      });
+          setTimeout(() => {
+            this.showShareMessage = false;
+          }, 3000);
+        });
+    },
   },
-},
 };
 </script>
 

@@ -9,7 +9,7 @@
                 <RouterLink to="/lista-de-cocktails">Home</RouterLink>            
             </li>
             <li>
-                <RouterLink to="/crea-tu-cocktail">Crea tu Cocktail</RouterLink>
+                <RouterLink to="/crea-tu-cocktail">Create your Cocktail</RouterLink>
             </li>
         </ul>
     </div>
