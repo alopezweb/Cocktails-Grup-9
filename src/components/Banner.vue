@@ -18,34 +18,31 @@
 
 <script>
 import axios from "axios";
-import { ref, onMounted } from "vue";
 
 export default {
-  setup() {
-    const cocktailOfTheDay = ref(null);
-    const apiUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-
-    const fetchRandomCocktail = async () => {
+  data() {
+    return {
+      cocktailOfTheDay: null,
+      apiUrl: "https://www.thecocktaildb.com/api/json/v1/1/random.php",
+    };
+  },
+  methods: {
+    async fetchRandomCocktail() {
       try {
-        const response = await axios.get(apiUrl);
+        const response = await axios.get(this.apiUrl);
         const cocktailData = response.data.drinks[0];
 
-        cocktailOfTheDay.value = {
+        this.cocktailOfTheDay = {
           name: cocktailData.strDrink,
           image: cocktailData.strDrinkThumb,
         };
       } catch (error) {
         console.error("Error al obtener el cóctel del día:", error);
       }
-    };
-
-    onMounted(() => {
-      fetchRandomCocktail();
-    });
-
-    return {
-      cocktailOfTheDay,
-    };
+    },
+  },
+  mounted() {
+    this.fetchRandomCocktail();
   },
 };
 </script>
