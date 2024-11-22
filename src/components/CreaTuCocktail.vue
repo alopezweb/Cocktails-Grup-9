@@ -1,7 +1,14 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { db } from "@/firebase"; // Import your Firebase configuration
-import { collection, addDoc, updateDoc, doc, deleteDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+  getDocs,
+} from "firebase/firestore";
 //import Header from "@/components/Header.vue";
 //import Nav from "@/components/Nav.vue";
 import IngredientSelector from "@/components/IngredientsSelector.vue";
@@ -17,8 +24,11 @@ const editingCocktailId = ref(null);
 // Fetch cocktails from Firestore
 const fetchCocktails = async () => {
   const querySnapshot = await getDocs(collection(db, "cocktails"));
-  cocktails.value = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-  console.log(cocktails)
+  cocktails.value = querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  console.log(cocktails);
 };
 
 // Guardar nou cocktail
@@ -32,12 +42,9 @@ const saveCocktail = async () => {
     resetForm();
     fetchCocktails();
   } else {
-
-
-
-   console.log("nombre "+cocktailName)
-   console.log("ingredientes"+ingredients)
-   console.log("recepta:"+recipe)
+    console.log("nombre " + cocktailName);
+    console.log("ingredientes" + ingredients);
+    console.log("recepta:" + recipe);
 
     alert("RELLENA TODOS LOS CAMPOS.");
   }
@@ -78,42 +85,66 @@ onMounted(fetchCocktails);
   <div>
     <main>
       <div class="form-container">
-        <h1>Crea tu cóctel</h1>
+        <h1>Create your cocktail</h1>
 
-        <form class="cocktail-form" @submit.prevent="editingCocktailId ? editCocktail() : saveCocktail()">
+        <form
+          class="cocktail-form"
+          @submit.prevent="editingCocktailId ? editCocktail() : saveCocktail()"
+        >
           <div class="form-group">
-            <label for="cocktail-name">Nombre del cocktail</label>
-            <input type="text" id="cocktail-name" v-model="cocktailName" placeholder="Escribe aquí el nombre del nuevo cocktail" required/>
+            <label for="cocktail-name">Cocktail name</label>
+            <input
+              type="text"
+              id="cocktail-name"
+              v-model="cocktailName"
+              placeholder="Write the name of the new cocktail here"
+              required
+            />
           </div>
 
           <div class="form-group">
-            <label for="ingredients">Ingredientes</label>
+            <label for="ingredients">Ingredients</label>
             <div id="ingredients">
               <IngredientSelector v-model="ingredients" />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="recipe">Receta</label>
+            <label for="recipe">Recipe</label>
             <textarea
               id="recipe"
               v-model="recipe"
-              placeholder="Escribe aquí tu receta"
+              placeholder="Write your recipe here"
               required
             ></textarea>
           </div>
 
           <div class="button-container">
             <button type="submit" class="btn save-btn">Guardar</button>
-            <button type="button" class="btn delete-btn" @click="deleteCocktail(editingCocktailId)">Eliminar</button>
+            <button
+              type="button"
+              class="btn delete-btn"
+              @click="deleteCocktail(editingCocktailId)"
+            >
+              Eliminar
+            </button>
           </div>
         </form>
 
-        <h2>Lista de Cócteles</h2>
+        <h2>Cocktails List</h2>
         <ul>
           <li v-for="cocktail in cocktails" :key="cocktail.id">
             <strong>{{ cocktail.name }}</strong>
-            <button @click="editingCocktailId = cocktail.id; cocktailName = cocktail.name; ingredients = cocktail.ingredients; recipe = cocktail.recipe">Editar</button>
+            <button
+              @click="
+                editingCocktailId = cocktail.id;
+                cocktailName = cocktail.name;
+                ingredients = cocktail.ingredients;
+                recipe = cocktail.recipe;
+              "
+            >
+              Editar
+            </button>
             <button @click="deleteCocktail(cocktail.id)">Eliminar</button>
           </li>
         </ul>
@@ -121,7 +152,6 @@ onMounted(fetchCocktails);
     </main>
   </div>
 </template>
-
 
 <style scoped>
 body {

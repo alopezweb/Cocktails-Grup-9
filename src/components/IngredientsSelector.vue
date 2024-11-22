@@ -5,7 +5,6 @@ import "vue-multiselect/dist/vue-multiselect.min.css";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
-// Define props for v-model
 const props = defineProps({
   modelValue: {
     type: Array,
@@ -13,16 +12,11 @@ const props = defineProps({
   },
 });
 
-// Define emits to update v-model
 const emit = defineEmits(["update:modelValue"]);
 
-// Ingredientes seleccionados por el usuario
-const selectedIngredients = ref(props.modelValue);
-console.log(selectedIngredients);
-// Ingredientes predefinidos (cargados desde Firestore)
+const selectedIngredients = ref([...props.modelValue]);
 const predefinedIngredients = ref([]);
 
-// Función para cargar ingredientes desde Firestore
 const loadIngredients = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, "ingredients"));
@@ -30,16 +24,11 @@ const loadIngredients = async () => {
       id: doc.id,
       ...doc.data(),
     }));
-    console.log(
-      "Ingredientes cargados desde Firestore:",
-      predefinedIngredients.value
-    );
   } catch (error) {
     console.error("Error al cargar ingredientes:", error);
   }
 };
 
-// Función para manejar la adición de nuevos ingredientes
 const addTag = async (newTag) => {
   const tag = {
     name: newTag,
@@ -49,14 +38,8 @@ const addTag = async (newTag) => {
   };
 
   try {
-    // Guarda el nuevo ingrediente en Firestore
     const docRef = await addDoc(collection(db, "ingredients"), tag);
-    console.log("Ingrediente guardado en Firestore:", tag);
-
-    // Actualiza la lista de ingredientes predefinidos cargados desde Firestore
     predefinedIngredients.value.push({ id: docRef.id, ...tag });
-    
-    // Update selected ingredients and emit the change
     selectedIngredients.value.push(tag);
     emit("update:modelValue", selectedIngredients.value);
   } catch (error) {
@@ -64,30 +47,31 @@ const addTag = async (newTag) => {
   }
 };
 
-// Watch for changes in selectedIngredients to emit updates
 watch(selectedIngredients, (newValue) => {
   emit("update:modelValue", newValue);
 });
 
-// Cargar ingredientes al montar el componente
-onMounted(() => {
-  loadIngredients();
-});
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    selectedIngredients.value = [...newValue];
+  }
+);
+
+onMounted(loadIngredients);
 </script>
 
 <template>
   <div>
-    <h2>Selecciona o añade ingredientes</h2>
-
-    <!-- Componente de selección múltiple de ingredientes con taggable -->
+    <h2>Select or add ingredients</h2>
     <Multiselect
       v-model="selectedIngredients"
       :options="predefinedIngredients"
       :multiple="true"
       :taggable="true"
-      :tag-placeholder="'Añadir ingrediente...'"
+      :tag-placeholder="'Add ingredient...'"
       @tag="addTag"
-      placeholder="Escribe aquí tu ingrediente o selecciónalo en la lista"
+      placeholder="Type your ingredient here or select it from the list"
       label="name"
       track-by="code"
     />
