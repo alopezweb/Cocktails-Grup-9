@@ -2,7 +2,7 @@
 </script>
 
 <template>
-<nav class="bg-blue-500">
+<nav class="nav">
     <div class="container mx-auto p-4">
         <ul class="flex space-x-4">
             <li>
@@ -17,4 +17,12 @@
 </template>
 
 <style scoped>
+.nav{
+    color: #b9aea6;
+    border-top: #362F2A solid 1px;
+    border-bottom: #362F2A solid 1px;
+}
+.nav a:hover{
+    color: #fff;
+}
 </style>

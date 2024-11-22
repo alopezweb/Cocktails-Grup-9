@@ -77,8 +77,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <h2>Selecciona o añade ingredientes</h2>
-
     <!-- Componente de selección múltiple de ingredientes con taggable -->
     <Multiselect
       v-model="selectedIngredients"

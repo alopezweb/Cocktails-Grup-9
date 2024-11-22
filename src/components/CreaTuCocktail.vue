@@ -77,7 +77,7 @@ onMounted(fetchCocktails);
 <template>
   <div>
     <main>
-      <div class="form-container">
+      <div class="form-container w-full">
         <h1>Crea tu cóctel</h1>
 
         <form class="cocktail-form" @submit.prevent="editingCocktailId ? editCocktail() : saveCocktail()">
@@ -102,19 +102,21 @@ onMounted(fetchCocktails);
               required
             ></textarea>
           </div>
-
+          
           <div class="button-container">
-            <button type="submit" class="btn save-btn">Guardar</button>
-            <button type="button" class="btn delete-btn" @click="deleteCocktail(editingCocktailId)">Eliminar</button>
+            <button type="button" class="button secondary-button text-white font-medium py-2 px-5 rounded-full transition" @click="deleteCocktail(editingCocktailId)">Delete</button>
+            <button type="submit" class="button text-white font-medium py-2 px-5 rounded-full transition">Save</button>          
           </div>
         </form>
 
-        <h2>Lista de Cócteles</h2>
-        <ul>
+        <h2 class="cocktails-list-heading">Lista de Cócteles</h2>
+        <ul class="cocktails-list" >
           <li v-for="cocktail in cocktails" :key="cocktail.id">
             <strong>{{ cocktail.name }}</strong>
-            <button @click="editingCocktailId = cocktail.id; cocktailName = cocktail.name; ingredients = cocktail.ingredients; recipe = cocktail.recipe">Editar</button>
-            <button @click="deleteCocktail(cocktail.id)">Eliminar</button>
+            <div>
+            <button class="button secondary-button text-white font-medium py-2 px-5 rounded-full transition" @click="deleteCocktail(cocktail.id)">Delete</button>
+            <button class="button text-white font-medium py-2 px-5 rounded-full transition" @click="editingCocktailId = cocktail.id; cocktailName = cocktail.name; ingredients = cocktail.ingredients; recipe = cocktail.recipe">Edit</button>
+            </div>
           </li>
         </ul>
       </div>
@@ -131,10 +133,7 @@ body {
 }
 
 .form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  margin: auto;
   width: 100%;
   max-width: 600px;
   padding: 20px;
@@ -144,9 +143,14 @@ body {
 }
 
 h1 {
-  text-align: center;
   font-size: 24px;
   margin-bottom: 20px;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .cocktail-form {
@@ -155,12 +159,40 @@ h1 {
   flex-direction: column;
   gap: 20px;
 }
-
+.cocktail-form + h2{
+  margin-top: 32px;
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
 .form-group {
   display: flex;
   flex-direction: column;
 }
-
+.cocktails-list{  
+  width: 100%;
+}
+.cocktails-list-heading{
+  font-size: 1.875rem;
+}
+.cocktails-list li{
+  margin-top: 16px;
+  border-bottom: 1px solid #dcd6d2;
+  padding-bottom: 16px;
+}
+.cocktails-list li:first-child{
+  border-top: 1px solid #dcd6d2;
+  padding-top: 16px;
+}
+.cocktails-list li:last-child{
+  border-bottom: 0;
+}
+.cocktails-list li div{
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
 label {
   font-weight: bold;
   margin-bottom: 5px;
@@ -169,7 +201,7 @@ label {
 input,
 textarea {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #dcd6d2;
   border-radius: 5px;
   margin-top: 5px;
   font-size: 16px;
@@ -182,50 +214,12 @@ textarea {
 
 .button-container {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 16px;
 }
-
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-.save-btn {
-  background-color: #4caf50;
-  color: white;
-}
-
-.save-btn:hover {
-  background-color: #45a049;
-}
-
-.edit-btn {
-  background-color: #ffa500;
-  color: white;
-}
-
-.edit-btn:hover {
-  background-color: #e69500;
-}
-
-.delete-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.delete-btn:hover {
-  background-color: #e53935;
+input::placeholder, textarea::placeholder,
+.multiselect__placeholder{
+  color: #adadad;
+  font-size: 14px;
 }
 </style>

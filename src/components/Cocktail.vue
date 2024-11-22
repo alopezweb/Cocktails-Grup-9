@@ -1,12 +1,13 @@
 <template>
   <div class="container mx-auto p-4">
     <!-- Back Button -->
-    <button @click="$router.back()" class="text-black-500 hover:underline mb-4">← Back</button>
+    <button @click="$router.back()" class="button text-white font-medium py-2 px-5 rounded-full transition">← Back</button>
+    
 
     <!-- Action Buttons (Save and Share) -->
     <div class="flex justify-end space-x-6 mb-4">
       <button
-        class="text-gray-500 hover:text-red-500 transition"
+        class="text-red-500"
         title="Save"
         @click="guardarCocktail"
       >
@@ -26,8 +27,7 @@
         </svg>
       </button>
 
-      <button
-        class="text-gray-500 hover:text-blue-500 transition"
+      <button      
         title="Share"
         @click="compartirCocktail"
       >
@@ -58,26 +58,26 @@
 
     <!-- Cocktail Content -->
     <div v-if="cocktail">
-      <h2 class="text-3xl font-bold mb-4 text-center">{{ cocktail.strDrink }}</h2>
+      <h2 class="cocktail-title text-3xl font-bold mb-4">{{ cocktail.strDrink }}</h2>
       <img
         :src="cocktail.strDrinkThumb || '/placeholder.jpg'"
         alt="Cocktail image"
         class="w-full h-64 object-cover rounded-lg mb-4"
       />
-      <h4 class="text-lg font-semibold">Ingredients:</h4>
-      <ul class="list-disc list-inside mb-4">
+      <h4>Ingredients:</h4>
+      <ul class="list-disc list-inside mb-3">
         <li v-for="ingredient in ingredients" :key="ingredient">
           {{ ingredient }}
         </li>
       </ul>
-      <h4 class="text-lg font-semibold">Instructions:</h4>
-      <p class="text-gray-700">{{ cocktail.strInstructions }}</p>
+      <h4>Instructions:</h4>
+      <p class="cocktail-instructions">{{ cocktail.strInstructions }}</p>
     </div>
 
     <!-- Error or Loading Message -->
-    <div v-else class="text-red-500 text-center mt-4">
+    <!-- <div v-else class="text-red-500 text-center mt-4">
       The cocktail details could not be loaded.
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -175,16 +175,37 @@ export default {
   max-width: 600px;
   margin: auto;
   background-color: #fff;
+  color: #1d1d1f;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
+.cocktail-title{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+h4{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 19px;
+}
+.list-disc{
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.cocktail-instructions{
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
 button {
   cursor: pointer;
-}
-
-ul {
-  padding-left: 1.5rem;
 }
 </style>

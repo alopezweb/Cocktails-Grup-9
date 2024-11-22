@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.main {
+  background-color: #000;
+  min-height: 300px;
+  padding: 20px;
+}
+.cocktail-card {
+  background-color: #fff;
+  color: #1d1d1f;
+  h3 {
+    margin-top: 16px;
+  }
+}

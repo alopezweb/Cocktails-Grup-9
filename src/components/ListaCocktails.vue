@@ -6,7 +6,7 @@
       :key="cocktail.idDrink"
       @click="viewDetails(cocktail.idDrink)">
       <img :src="cocktail.strDrinkThumb" alt="Imatge del còctel" class="cocktail-image" />
-      <h3>{{ cocktail.strDrink }}</h3>
+      <h3 class="text-lg" >{{ cocktail.strDrink }}</h3>
     </div>
   </div>
 </template>
@@ -41,29 +41,42 @@ export default {
 
 <style scoped>
 .cocktail-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
-
 .cocktail-card {
-  border: 1px solid #ddd;
+  width: calc(33.3333% - 6.66px);
   border-radius: 8px;
   padding: 16px;
   text-align: center;
   transition: transform 0.2s;
   cursor: pointer;
 }
-
-.cocktail-card:hover {
-  transform: scale(1.05);
+.cocktail-card h3{
+font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
-
+.cocktail-card:hover {
+  transform: scale(1.02);
+}
 .cocktail-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
+}
+@media (max-width: 430px) {
+  .cocktail-card {
+    width: calc(50% - 5px);
+  }
+}
+@media (max-width: 320px) {
+  .cocktail-card {
+    width: 100%;
+  }
 }
 </style>
 
