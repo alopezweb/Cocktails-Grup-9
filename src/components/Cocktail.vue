@@ -88,11 +88,6 @@
       <h4>Instructions:</h4>
       <p class="cocktail-instructions">{{ cocktail.strInstructions }}</p>
     </div>
-
-    <!-- Error or Loading Message -->
-    <!-- <div v-else class="text-red-500 text-center mt-4">
-      The cocktail details could not be loaded.
-    </div> -->
   </div>
 </template>
 
