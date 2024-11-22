@@ -202,6 +202,7 @@ h1 {
   border-bottom: 0;
 }
 .cocktails-list li div{
+  padding-top: 16px;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
